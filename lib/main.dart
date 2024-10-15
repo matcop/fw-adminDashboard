@@ -14,10 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Admin Dashboard',
+      debugShowCheckedModeBanner: false,
+      title: 'Admin Dashboards',
       initialRoute: '/',
       onGenerateRoute: Flurorouter.router.generator,
-      builder: (_,child){
+      builder: (_, child) {
         return AuthLayout();
       },
     );
