@@ -2,10 +2,11 @@ import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/ui/buttons/custom_outlined_button.dart';
 import 'package:admin_dashboard/ui/buttons/link_text.dart';
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
-class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+class RegisterView extends StatelessWidget {
+  const RegisterView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,18 @@ class LoginView extends StatelessWidget {
           child: Form(
               child: Column(
             children: [
+ TextFormField(
+                // validator: (value),
+                style: TextStyle(color: Colors.white),
+                decoration:CustomInput.loginInputDecoration(
+                    hint: 'Ingrese su nombre',
+                    label: 'Nombre',
+                    icon: Icons.account_circle_rounded),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+
               TextFormField(
                 // validator: (value),
                 style: TextStyle(color: Colors.white),
@@ -44,7 +57,7 @@ class LoginView extends StatelessWidget {
               ),
               CustomOutlinedButton(
                 onPressed: () {},
-                text: 'Ingresar aqui',
+                text: 'Crear cuenta',
                 // color: Colors.red,
                 // isFilled: true,
               ),
@@ -52,10 +65,9 @@ class LoginView extends StatelessWidget {
                 height: 20,
               ),
               LinkText(
-                  text: 'Nueva cuenta',
+                  text: 'ir al Login',
                   onPressed: () {
-                    // print("ir al registro");
-                    Navigator.pushNamed(context, Flurorouter.registerRoute);
+                    Navigator.pushNamed(context, Flurorouter.loginRoute);
                     //TODO: IR AL REGISTRO
                   })
             ],
@@ -65,5 +77,5 @@ class LoginView extends StatelessWidget {
     );
   }
 
-  
+ 
 }
