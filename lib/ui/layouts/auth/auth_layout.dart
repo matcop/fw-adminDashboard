@@ -16,19 +16,19 @@ class AuthLayout extends StatelessWidget {
       thumbVisibility: true,
       trackVisibility: true,
       thickness: 18.0,
-      radius: Radius.circular(0.5),
+      radius: const Radius.circular(0.5),
 
       interactive: true,
       // isAlwaysShown:true,
       child: ListView(
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         children: [
           (size.width > 1000)
               ? _DesktopBody(child: child)
               : _MobileBody(child: child),
 
           //Links bar
-          LinksBar(),
+          const LinksBar(),
         ],
       ),
     ));
@@ -46,8 +46,8 @@ class _MobileBody extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(height: 20),
-          CustomTitle(),
+          const SizedBox(height: 20),
+          const CustomTitle(),
           Container(
             width: double.infinity,
             height: 420,
@@ -56,7 +56,7 @@ class _MobileBody extends StatelessWidget {
           Container(
             width: double.infinity,
             height: 400,
-            child: BackgroundTwitter(),
+            child: const BackgroundTwitter(),
           )
         ],
       ),
@@ -75,11 +75,12 @@ class _DesktopBody extends StatelessWidget {
     return Container(
       width: size.width,
       height: size.height * 0.95,
-      color: Colors.red,
+      color: Colors.black,
       child: Row(
         children: [
+
           //twiter background
-          BackgroundTwitter(),
+          const Expanded(child: BackgroundTwitter()),
 
           //view container
           Container(
@@ -88,8 +89,8 @@ class _DesktopBody extends StatelessWidget {
             color: Colors.black,
             child: Column(
               children: [
-                CustomTitle(),
-                SizedBox(
+                const CustomTitle(),
+                const SizedBox(
                   height: 50,
                 ),
                 Expanded(child: child)
