@@ -1,5 +1,4 @@
 import 'package:admin_dashboard/datatables/categories_datasources.dart';
-import 'package:admin_dashboard/models/http/category.dart';
 import 'package:admin_dashboard/providers/categories_provider.dart';
 import 'package:admin_dashboard/ui/buttons/custom_icon_button.dart';
 import 'package:admin_dashboard/ui/cards/white_card.dart';
@@ -17,6 +16,8 @@ class CategoriesView extends StatefulWidget {
 
 class _CategoriesViewState extends State<CategoriesView> {
   int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
+
+
   @override
   void initState() {
     // TODO: implement initState
@@ -27,7 +28,7 @@ class _CategoriesViewState extends State<CategoriesView> {
 
   @override
   Widget build(BuildContext context) {
-    final categorias = Provider.of<CategoriesProvider>(context).categorias;
+    final categorias = Provider.of<CategoriesProvider>(context, listen: true).categorias;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

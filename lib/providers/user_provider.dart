@@ -14,6 +14,7 @@ class UserProvider extends ChangeNotifier {
     this.getPaginatedUser();
   }
 
+//Funcion para obtener los usuarios
   getPaginatedUser() async {
     final resp = await CafeApi.httpGet('/usuarios?limite=10&desde=0');
     final usersResponse = UsersResponse.fromJson(resp);

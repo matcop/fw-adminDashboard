@@ -29,23 +29,17 @@ class AppState extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-            lazy: false, //solo se hara bajo demanda
-            create: (_) => AuthProvider()),
+        //solo se hara bajo demanda
+        ChangeNotifierProvider(lazy: false, create: (_) => AuthProvider()),
 
-        ChangeNotifierProvider(
-          lazy: false,
-          create: (_)=>SideMenuProvider()
-        
-        ),
-        ChangeNotifierProvider(
-          
-          create: (_)=>CategoriesProvider()
-        ),
-        ChangeNotifierProvider(
-          lazy: false,
-          create: (_)=>UserProvider()
-        ),
+        ChangeNotifierProvider(lazy: false,create: (_)=>SideMenuProvider()),
+
+        ChangeNotifierProvider(lazy: false,create: (_)=>UserProvider()),
+
+        ChangeNotifierProvider(lazy: true,create: (_)=>CategoriesProvider()),
+
+        //se inicializara bajo demanda cuando el lazy esta en true
+
       ],
       child: const MyApp(),
     );

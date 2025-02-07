@@ -12,6 +12,7 @@ class UsersView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final usersProvider=Provider.of<UserProvider>(context);
+    // final categoriesProvider = Provider.of<CategoriesProvider>(context);
     
     final usersDataSource= new UsersDataSource(usersProvider.users);
     return Container(

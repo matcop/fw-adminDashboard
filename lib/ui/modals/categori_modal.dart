@@ -75,13 +75,10 @@ class _CategoryModalState extends State<CategoryModal> {
             child: CustomOutlinedButton(
               onPressed: () async {
 
-
-
                 // if (id == null) {
                 //   //crear
-                //   categoryProvider.newCategory(nombre);
+                // await  categoryProvider.newCategory(nombre);
                 //   NotificationsService.showSnackbar('$nombre creado');
-
                 // } else {
                 //   //MODIFICAR
                 //   categoryProvider.updateCategory(id!, nombre);
@@ -89,13 +86,10 @@ class _CategoryModalState extends State<CategoryModal> {
                 // }
                 // Navigator.of(context).pop();
 
-
-
-
                 try {
                   if (id == null) {
                     //crear
-                    categoryProvider.newCategory(nombre);
+                    await categoryProvider.newCategory(nombre);
                     NotificationsService.showSnackbar('$nombre creado');
                   } else {
                     //MODIFICAR

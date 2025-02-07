@@ -10,23 +10,26 @@ import 'package:flutter/material.dart';
 
 class CategoriesProvider extends ChangeNotifier {
   List<Categoria> categorias = [];
-
-  getCategories() async {
+  
+  //Obtener las categorias
+ getCategories() async {
     final resp = await CafeApi.httpGet('/categorias');
-    print(resp);
+    // print(resp);
     final categoriesResponse = CategoriesResponse.fromJson(resp);
 
     this.categorias = [...categoriesResponse.categorias];
     notifyListeners();
   }
 
-  newCategory(String name) {
+  //crear nueva categoria
+  Future newCategory(String name)async {
     final data = {'nombre': name};
 
     try {
-      final json = CafeApi.post('/categorias', data);
+      final json =await CafeApi.post('/categorias', data);
       final newCategory = Categoria.fromJson(json);
       categorias.add(newCategory);
+
       notifyListeners();
     } catch (e) {
       if (e is HttpException) {
