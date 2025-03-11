@@ -1,4 +1,7 @@
+import 'dart:typed_data';
+
 import 'package:admin_dashboard/services/local_storage.dart';
+import 'package:admin_dashboard/services/notifications_service.dart';
 import 'package:dio/dio.dart';
 
 class CafeApi {
@@ -22,8 +25,12 @@ class CafeApi {
       final resp = await _dio.get(path);
 
       return resp.data;
-    } catch (e) {
-      print(e);
+    }on DioException catch (e) {
+      NotificationsService.showSnackbarError(e.response?.data['errors'][0]['msg'] );
+
+      
+      // print(e.response?.data['errors'][0]['msg']);
+      
       throw ('ERROR EN EL GET');
     }
   }
@@ -35,32 +42,30 @@ class CafeApi {
     try {
       final resp = await _dio.post(path, data: formData);
 
-      print(resp.data);
+    
       return resp.data;
 
-    } catch (e) {
-      // print(resp);
-      print(e);
-      throw ('ERROR EN EL post ');
+    }on DioException catch (e) {
+     
+     
+      throw ('ERROR EN EL post ${e}');
     }
   }
 
 
-
-
 static  put(String path, Map<String, dynamic> data) async {
     final formData = FormData.fromMap(data);
-print(formData);
+
     try {
       final resp = await _dio.put(path, data: formData);
 
-      print(resp.data);
+     
       return resp.data;
 
-    } catch (e) {
-      // print(resp);
-      print(e);
-      throw ('ERROR ACTUALIZAR ');
+    } on DioException catch (e) {
+    
+     
+      throw ('ERROR ACTUALIZAR $e');
     }
   }
 
@@ -71,16 +76,34 @@ print(formData);
     try {
       final resp = await _dio.delete(path, data: formData);
 
-      print(resp.data);
+     
       return resp.data;
 
-    } catch (e) {
+    }on DioException catch (e) {
       
-      print(e);
+   
       throw ('ERROR borrar delete ');
     }
   }
   
+static  uploadFile(String path, Uint8List bytes) async {
+
+    final formData = FormData.fromMap({
+      'archivo':MultipartFile.fromBytes(bytes)
+    });
+
+
+    try {
+      final resp = await _dio.put(path, data: formData);
+
+     
+      return resp.data;
+
+    } on DioException catch (e) {
+      
+      throw ('ERROR SUBIR EL ARCHIVO $e');
+    }
+  }
 
 
 }

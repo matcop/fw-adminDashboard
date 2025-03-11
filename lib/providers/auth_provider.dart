@@ -24,7 +24,7 @@ class AuthProvider extends ChangeNotifier {
     final data = {'correo': email, 'password': password};
 
     CafeApi.post('/auth/login', data).then((json) {
-      print(json);
+     
 
       // final authResponse = AuthResponse.fromRawJson(json);
       final authResponse = AuthResponse.fromJson(json);
@@ -37,7 +37,7 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners(); // para que se redibuje en los lugares donde tiene que redibujar.
       CafeApi.configureDio();
     }).catchError((e) {
-      print('Error capturado: $e');
+     
       if (e is TypeError) {
         NotificationsService.showSnackbarError(
             'Error de tipo inesperado: ${e.toString()}');
@@ -56,7 +56,7 @@ class AuthProvider extends ChangeNotifier {
     //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
 
     // LocalStorage.prefs.setString('token', this._token!);
-    // print('alamacenar JWT: $_token');
+    
 
     // //navegar al dashboard
     // authStatus = AuthStatus.authenticated;
@@ -70,16 +70,11 @@ class AuthProvider extends ChangeNotifier {
   register(String email, String password, String name) {
 
 
-    //TODO: VALIDACION POR SEGIP
-    //TODO: VALIDACION POR PERSONAL O SERV. ESCALAFON
-    //POR FALSO RETURN FALSE MUESTRE EL MENSAJE
-    // 
-
 
     final data = {'nombre': name, 'correo': email, 'password': password};
 
     CafeApi.post('/usuarios', data).then((json) {
-      print(json);
+    
 
       //final authResponse = AuthResponse.fromRawJson(json);
       final authResponse = AuthResponse.fromJson(json);
@@ -92,11 +87,11 @@ class AuthProvider extends ChangeNotifier {
       CafeApi.configureDio();
       notifyListeners(); // para que se redibuje en los lugares donde tiene que redibujar.
 
-      //print(authResponse);
+     
     }).catchError((e) {
-      print('error en $e');
+    
       NotificationsService.showSnackbarError(e + 'hay un error en el registro');
-      // TODO:MOSTRAR ALGUNA NOTIFICACION
+ 
     });
   }
 
@@ -121,7 +116,7 @@ class AuthProvider extends ChangeNotifier {
       return true;
 
     } catch (e) {
-      print(e);
+     
       authStatus = AuthStatus.noAuthenticated;
       notifyListeners();
       return false;

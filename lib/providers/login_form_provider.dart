@@ -17,12 +17,11 @@ class LoginFormProvider extends ChangeNotifier {
 
   bool validateForm() {
     if(formKey.currentState!.validate()){
-      // print('formulario valido');
-      // print('$email --- $password');
+     
       return true;
       //aqui podriamos importar la importacion del authprovider pasandole email y pasword.
     }else{
-      // print('formulario NO VALIDO');
+
       return false;
     }
     

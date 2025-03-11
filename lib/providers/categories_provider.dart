@@ -14,7 +14,7 @@ class CategoriesProvider extends ChangeNotifier {
   //Obtener las categorias
  getCategories() async {
     final resp = await CafeApi.httpGet('/categorias');
-    // print(resp);
+  
     final categoriesResponse = CategoriesResponse.fromJson(resp);
 
     this.categorias = [...categoriesResponse.categorias];
@@ -69,8 +69,9 @@ class CategoriesProvider extends ChangeNotifier {
 
       notifyListeners();
     } catch (e) {
-      print(e);
-      print('error al actualizar categoria');
+      
+        throw 'Error borrando la categoria $e';
+     
     }
   }
 }

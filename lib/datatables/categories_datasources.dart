@@ -20,7 +20,7 @@ class CategoriesDTS extends DataTableSource {
         children: [
           IconButton(
               onPressed: () {
-                print('Editando categoria: ' + categoria.nombre);
+                
 
                 showModalBottomSheet(
                     backgroundColor: Colors.transparent,
@@ -32,7 +32,7 @@ class CategoriesDTS extends DataTableSource {
               icon: Icon(Icons.edit_outlined)),
           IconButton(
               onPressed: () {
-                // print('Borrando categoria: ' + categoria.nombre);
+               
                 final dialog = AlertDialog(
                   title: Text('esta seguro de borrarlo ..?'),
                   content: Text('Borrar definitivamente ${categoria.nombre}'),

@@ -12,7 +12,7 @@ GlobalKey<FormState> formkey = new GlobalKey<FormState>();
   validateForm(){
     if (formkey.currentState!.validate()) {
       print('registro valido');
-      print('$email  $password  $name');
+      
       return true;
     } else {
       print('el formulario NO VALIDO');

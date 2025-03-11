@@ -31,6 +31,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   dio: ^5.7.0
   email_validator: ^3.0.0
+  file_picker: ^9.0.2
   fluro: ^2.0.5
   flutter:
     sdk: flutter

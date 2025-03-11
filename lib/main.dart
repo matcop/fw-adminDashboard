@@ -1,18 +1,13 @@
 import 'package:admin_dashboard/api/CafeApi.dart';
-import 'package:admin_dashboard/providers/auth_provider.dart';
-import 'package:admin_dashboard/providers/categories_provider.dart';
-import 'package:admin_dashboard/providers/sidemenu_provider.dart';
-import 'package:admin_dashboard/providers/user_provider.dart';
 import 'package:admin_dashboard/router/router.dart';
-import 'package:admin_dashboard/services/local_storage.dart';
-import 'package:admin_dashboard/services/navigation_service.dart';
-import 'package:admin_dashboard/services/notifications_service.dart';
 import 'package:admin_dashboard/ui/layouts/auth/auth_layout.dart';
 import 'package:admin_dashboard/ui/layouts/dashboard/dashboard_layout.dart';
 import 'package:admin_dashboard/ui/layouts/splash/splash_layout.dart';
-
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
+import 'providers/provider.dart';
+import 'services/services.dart';
 
 void main() async {
   await LocalStorage.configurePrefs();
@@ -31,12 +26,10 @@ class AppState extends StatelessWidget {
       providers: [
         //solo se hara bajo demanda
         ChangeNotifierProvider(lazy: false, create: (_) => AuthProvider()),
-
         ChangeNotifierProvider(lazy: false,create: (_)=>SideMenuProvider()),
-
-        ChangeNotifierProvider(lazy: false,create: (_)=>UserProvider()),
-
+        ChangeNotifierProvider(lazy: false,create: (_)=>UsersProvider()),
         ChangeNotifierProvider(lazy: true,create: (_)=>CategoriesProvider()),
+        ChangeNotifierProvider(lazy: true,create: (_)=>UserFormProvider()),
 
         //se inicializara bajo demanda cuando el lazy esta en true
 

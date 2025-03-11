@@ -1,16 +1,15 @@
-import 'dart:convert';
-
 import 'package:admin_dashboard/api/CafeApi.dart';
 import 'package:admin_dashboard/models/http/users_response.dart';
 import 'package:admin_dashboard/models/http/usuario.dart';
 import 'package:flutter/material.dart';
 
-class UserProvider extends ChangeNotifier {
+class UsersProvider extends ChangeNotifier {
   List<Usuario> users = [];
   bool isLoading = true;
-  bool ascending=true;
+  bool ascending = true;
+  int? sortColumnIndex;
 
-  UserProvider() {
+  UsersProvider() {
     this.getPaginatedUser();
   }
 
@@ -22,9 +21,21 @@ class UserProvider extends ChangeNotifier {
     this.users = [...usersResponse.usuarios];
 
     isLoading = false;
-    print(resp);
 
     notifyListeners();
+  }
+
+  Future<Usuario?> getUserById(String uid) async {
+    try {
+      final resp = await CafeApi.httpGet('/usuarios/$uid');
+      final user = Usuario.fromJson(resp);
+      return user;
+
+    } catch (e) {
+  
+      // throw ('Error en getUserById: $e');
+      return null;
+    }
   }
 
   void sort<T>(Comparable<T> Function(Usuario user) getfield) {
@@ -32,10 +43,26 @@ class UserProvider extends ChangeNotifier {
       final aValue = getfield(a);
       final bValue = getfield(b);
 
-      return ascending? Comparable.compare(aValue, bValue):Comparable.compare(bValue, aValue);
+      return ascending
+          ? Comparable.compare(aValue, bValue)
+          : Comparable.compare(bValue, aValue);
     });
 
     ascending = !ascending;
+    notifyListeners();
+  }
+
+  void refreshUser(Usuario newUser) {
+    this.users = this.users.map(
+      (user) {
+        if (user.uid == newUser.uid) {
+          user = newUser;
+        }
+
+        return user;
+      },
+    ).toList();
+
     notifyListeners();
   }
 }

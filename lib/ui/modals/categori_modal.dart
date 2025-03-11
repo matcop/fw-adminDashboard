@@ -98,7 +98,7 @@ class _CategoryModalState extends State<CategoryModal> {
                   }
                   Navigator.of(context).pop();
                 } catch (e) {
-                  // print();
+                 
                   Navigator.of(context).pop();
                   NotificationsService.showSnackbar(e.toString());
                   // NotificationsService.showSnackbar(
